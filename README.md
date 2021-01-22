@@ -14,4 +14,3 @@ Codes for CS326 Assignments
 
 -   Preferably use [Jupyter Lab](http://jupyterlab.io/) to open the notebooks locally.
 -   To open it as an excutable in [Google Colab](https://colab.research.google.com/), refer [here](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb#scrollTo=Rmai0dD30XzL).
--   To view the ipynb notebooks online in read-only format, use [nbviewer](https://nbviewer.jupyter.org/).
