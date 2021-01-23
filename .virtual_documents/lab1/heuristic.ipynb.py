@@ -13,9 +13,9 @@ def mat_to_dict(matrix):
     contianing its indices
     """
     mat_dict = {}
-    for i in range(len(matrix)):
+    for i in range(matrix.shape[0]):
         row = matrix[i];
-        for j in range(len(row)):
+        for j in range(matrix.shape[1]):
             value = row[j];
             mat_dict[value] = (i, j)
     return mat_dict
@@ -75,7 +75,7 @@ print("Goal dict:", goal_dict)
 
 
 # Change this to test
-CURR_STATE = np.array([[0, 2, 3], [1, 8, 4], [7, 6, 5]])
+CURR_STATE = np.array([[2, 3, 0], [1, 8, 4], [7, 6, 5]])
 print("Current State:\n", CURR_STATE)
 
 
