@@ -1,0 +1,175 @@
+---
+title: "Lab 5"
+author: "Group 2 Naagraaj"
+date: "23/02/2021"
+output: 
+  html_document: 
+    toc: yes
+    fig_caption: yes
+    keep_md: yes
+  pdf_document: 
+    toc: yes
+    fig_caption: yes
+    keep_tex: yes
+  word_document: 
+    toc: yes
+    fig_caption: yes
+  html_notebook: 
+    toc: yes
+    fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab Assignment 5
+
+Understand the graphical models for inference under uncertainty, build Bayesian Network in R, Learn the structure and CPTs from Data, naive Bayes classification with dependency between features.
+
+```{r}
+library(bnlearn)
+library(epiDisplay)
+library(bnclassify)
+library(e1071)
+library(caret)
+```
+
+```{r}
+grades.grades <- read.csv('2020_bn_nb_data.txt', sep = "\t", head = TRUE, stringsAsFactors=TRUE)
+grades.courses <- grades.grades[, -9]
+```
+
+```{r}
+head(grades.grades)
+```
+
+```{r}
+summary(grades.grades)
+```
+
+## Part 1) Learning dependencies between the courses
+
+Using hill climbing search, we learn dependencies between different grades. We use two score and compare the result between them.
+
+### Using k2 score
+
+```{r}
+grades.hc.k2 <- hc(grades.courses, score = "k2")
+grades.hc.k2
+```
+
+```{r}
+plot(grades.hc.k2, main = "Hill Climbing with k2 score")
+```
+
+### Using bic score
+
+```{r}
+grades.hc.bic <- hc(grades.courses, score = "bic")
+grades.hc.bic
+```
+
+```{r}
+plot(grades.hc.bic, main = "Hill Climbing with bic score")
+```
+
+## Part 2) Learning the CPTs for each node
+
+We'll use the network made using the k2 score, as it represents the the relations better.
+
+```{r}
+grades.courses.fitted <- bn.fit(grades.hc.k2, grades.courses)
+```
+
+```{r}
+grades.courses.plots <- lapply(grades.courses.fitted, bn.fit.barchart)
+```
+
+## Part 3) What grade will a student get in PH100 if he earns DD in EC100, CC in IT101 and CD in MA101
+
+```{r}
+grades.courses.PH100Grade <- data.frame((cpdist(grades.courses.fitted, nodes=c("PH100"), evidence= (EC100 == "DD") & (IT101 == "CC") & (MA101 == "CD"))))
+tab1(grades.courses.PH100Grade, sort.group = "decreasing", main = "Distribution of grades in PH100 with given evidence")
+```
+
+Therefore, the student is most likely to earn a CD grade.
+
+## Splitting Data into test and train sets
+
+```{r}
+split <- sample(c(rep(0, 0.7*nrow(grades.grades)), rep(1, 0.3*nrow(grades.grades))))
+
+table(split)
+```
+
+```{r}
+data_train <- grades.grades[split == 0,]
+data_test <- grades.grades[split == 1,]
+head(data_test)
+```
+
+Putting it all in a function
+
+```{r}
+split_data <- function() {
+  split <- sample(c(rep(0, 0.7*nrow(grades.grades)), rep(1, 0.3*nrow(grades.grades))))
+  data_train <- grades.grades[split == 0,]
+  data_test <- grades.grades[split == 1,]
+  list("data_train" = data_train, "data_test" = data_test)
+}
+```
+
+## Part 4) Naive Bayes classifier for independent data
+
+```{r}
+nb.grades_indep <- nb(class = "QP", dataset = data_train)
+nb.grades_indep <- lp(nb.grades_indep, data_train, smooth = 0)
+plot(nb.grades_indep)
+```
+
+```{r}
+p_indep <- predict(nb.grades_indep, data_test)
+confusionMatrix(p_indep, data_test$QP)
+```
+
+Repeating this 20 times
+
+```{r}
+for (i in 1:20){
+  data <- split_data()
+  data_test <- data$data_test
+  data_train <- data$data_train
+  nb.grades_indep <- nb(class = "QP", dataset = data_train)
+  nb.grades_indep <- lp(nb.grades_indep, data_train, smooth = 0)
+  p_indep <- predict(nb.grades_indep, data_test)
+  print(accuracy(p_indep, data_test$QP))
+}
+```
+
+## Part 5) Naive Bayes classifier for dependent data
+
+```{r}
+nb.grades_dep <- tan_cl("QP", data_train)
+nb.grades_dep <- lp(nb.grades_dep, data_train, smooth = 1)
+plot(nb.grades_dep)
+```
+
+```{r}
+p_dep <- predict(nb.grades_dep, data_test)
+confusionMatrix(p_dep, data_test$QP)
+```
+
+Repeating this 20 times
+
+```{r}
+for (i in 1:20){
+  data <- split_data()
+  data_test <- data$data_test
+  data_train <- data$data_train
+  nb.grades_dep <- tan_cl("QP", data_train)
+  nb.grades_dep <- lp(nb.grades_dep, data_train, smooth = 1)
+  p_dep <- predict(nb.grades_dep, data_test)
+  print(accuracy(p_dep, data_test$QP))
+}
+```
