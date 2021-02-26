@@ -1,6 +1,6 @@
-# cs362-naagraaj
+# CS362 Naagraaj
 
-Codes for CS326 Assignments
+This repository codes submitted for CS326 Assignments
 
 ## Team Members
 
@@ -9,6 +9,22 @@ Codes for CS326 Assignments
 -   Ashutosh Singh (201851029)
 -   Pushkar Patel (201851094)
 -   Yash Shah (201851150)
+
+All the codes and their respective links have been submitted in the submission report itself, but to compile everything at one place, we madethis repo.
+
+## Experiments
+
+1. [Lab Assignment 1: Graph Search Agent for 8-Puzzle](/lab1/)
+2. [Lab Assignment 3: TSP using Simulated Annealing](/lab3/)
+3. [Lab Assignment 4: Game Playing Agent | Minimax| Alpha-Beta Pruning](/lab4/)
+4. [Lab Assignment 5: Building Bayesian Networks in R](/lab5/)
+
+## Additional Drive and Colab links to codes and graphs:
+
+1. [Colab Notebook for Graph Search Agent for 8-Puzzle](https://colab.research.google.com/drive/1T85Pey47g58dbvTXzaLoVjob6RLBtMXO?usp=sharing)
+2. [Drive folder for Graphs and Colab Notebook for TSP with Simulated Annealing](https://drive.google.com/drive/folders/1cnR8LQSqv7LrdPGZ8_GOCd3Ev5H_2hrp?usp=sharing)
+3. [Colab Notebook for Game Playing Agent |Minimax | Alpha-Beta Pruning](https://drive.google.com/file/d/1zjYPSTla1ukKkOGmYtYtefjP61IxBYM4/view)
+4. [Drive folder for Graphs and R Markdown file for Building Bayesian Networks in R](https://drive.google.com/drive/u/1/folders/1CqhhDv66v_5UbQw9uPqTbultB9fuh313)
 
 ## Some General Notes
 
