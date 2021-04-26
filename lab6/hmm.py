@@ -188,7 +188,8 @@ for i in range(max_iters):
     sys.stdout.flush()
     a, b, p, log_probability = estimate(a, b, p, T, M, O, log_probability)
 
-print(a)
-print(b)
-print(p)
-print(log_probability)
+print("\n")
+print("\nState transition matrix: \n", a)
+print("\n Observation probability matrix: \n", b)
+print("\n Pi: \n", p)
+print("\nLog Probability log(P(O/lambda)): ", log_probability)
