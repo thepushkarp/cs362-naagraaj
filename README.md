@@ -20,6 +20,8 @@ All the codes and their respective links have been submitted in the submission r
 4. [Lab Assignment 5: Building Bayesian Networks in R](/lab5/)
 5. [Lab Assignment 6: Hidden Markov Model and Expectation Maximization algorithm](/lab6/)
 6. [Lab Assignment 7: Markov Random Field and Hopfield Network](/lab7/)
+7. [Lab Assignment 8: MENACE](/lab8/)
+8. [Lab Assignment 9: n-arm bandit](/lab9/)
 
 ## Additional Drive and Colab links to codes and graphs:
 
@@ -28,7 +30,9 @@ All the codes and their respective links have been submitted in the submission r
 3. [Colab Notebook for Game Playing Agent |Minimax | Alpha-Beta Pruning](https://drive.google.com/file/d/1zjYPSTla1ukKkOGmYtYtefjP61IxBYM4/view)
 4. [Drive folder for Graphs and R Markdown file for Building Bayesian Networks in R](https://drive.google.com/drive/u/1/folders/1CqhhDv66v_5UbQw9uPqTbultB9fuh313)
 5. [Drive folder for Colab Notebook for HMM and EM algorithm](https://drive.google.com/drive/folders/1Olr1EmtWQXLfR5CYTmBYGDUy-8BcrBT5?usp=sharing)
-6. [ Colab Notebook for Markov Random Field and Hopfield Network](https://colab.research.google.com/drive/1s04Wl6uIfBd3UkOcBO31IuPh0LGUMTm7?usp=sharing)
+6. [Colab Notebook for Markov Random Field and Hopfield Network](https://colab.research.google.com/drive/1s04Wl6uIfBd3UkOcBO31IuPh0LGUMTm7?usp=sharing)
+7. [Colab Notebook for MENACE](https://colab.research.google.com/drive/1Spq0F5NP4pigkbrjnrgohY7sYyWkbQ42?usp=sharing)
+8. [Colab Notebook for n-arm bandit](https://colab.research.google.com/drive/1zHk9bEls6V614afUbo49oIGxbS6eprnv?usp=sharing)
 
 ## Some General Notes
 
