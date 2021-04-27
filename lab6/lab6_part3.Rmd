@@ -1,0 +1,70 @@
+---
+title: "Lab 6"
+author: "Group 5 Naagraaj"
+output:
+  html_notebook: 
+    toc: yes
+    fig_caption: yes
+  html_document: 
+    toc: yes
+    fig_caption: yes
+    keep_md: yes
+  word_document: 
+    toc: yes
+    fig_caption: yes
+  pdf_document: 
+    toc: yes
+    fig_caption: yes
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab Assignment 6
+
+## Part 3)
+A point set with real values is given in 2020_em_clustering.csv. Considering that there are two clusters, use EM to group together points belonging to the same cluster. Try and argue that k-means is an EM algorithm.
+
+### EM algorithm
+```{r}
+library(mclust)
+```
+
+
+```{r}
+content <- read.table("2020_em_clustering.csv", sep = ",")
+content
+```
+
+
+```{r}
+df <- as.data.frame(t(content))
+df
+```
+
+```{r}
+# using this mclust package for estimation maximization algorithm
+train_data <- Mclust(df, G=2)
+summary(train_data)
+```
+
+```{r}
+# 1D plot for the data with classification
+mclust1Dplot(df$V1, parameters = train_data$parameters, z = train_data$z, what = "classification", xlab = "points position")
+```
+```{r}
+# 1D plot for the data with uncertainty
+mclust1Dplot(df$V1, parameters = train_data$parameters, z = train_data$z, what = "uncertainty", xlab = "points position")
+```
+### k-means
+
+```{r}
+data <- kmeans(df$V1, centers = 2)
+data
+```
+```{r}
+plot(df$V1, data$cluster, xlab = "points position", ylab = "Classification", col = ifelse(data$cluster>1.5, "red", "blue"), pch="|")
+```
+
