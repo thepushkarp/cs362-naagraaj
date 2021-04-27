@@ -10,7 +10,7 @@ This repository codes submitted for CS326 Assignments
 -   Pushkar Patel (201851094)
 -   Yash Shah (201851150)
 
-All the codes and their respective links have been submitted in the submission report itself, but to compile everything at one place, we madethis repo.
+All the codes and their respective links have been submitted in the submission report itself, but to compile everything at one place, we made this repo.
 
 ## Experiments
 
